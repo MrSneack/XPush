@@ -4,7 +4,9 @@
   "version": "${version}",
   "name": "XPush",
   "description": "",
-  "authors": [],
+  "authors": [
+    "MrSneack"
+  ],
   "contact": {},
   "license": "MIT",
   "icon": "assets/xpush/icon.png",
