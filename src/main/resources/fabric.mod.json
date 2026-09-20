@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "xpush",
-  "version": "1.0",
+  "version": "${version}",
   "name": "XPush",
   "description": "",
   "authors": [
