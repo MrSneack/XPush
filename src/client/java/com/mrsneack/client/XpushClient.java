@@ -19,6 +19,7 @@ public class XpushClient implements ClientModInitializer {
     public static KeyBinding toggleKeyBind;
     public static boolean toggle;
     public static Category category = Category.create(Identifier.of("xpush"));
+    public int delay = 0;
     @Override
     public void onInitializeClient() {
         toggleKeyBind = KeyBindingHelper.registerKeyBinding(new KeyBinding(
@@ -29,6 +30,11 @@ public class XpushClient implements ClientModInitializer {
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            if(delay >0){
+                delay--;
+                return;
+            }
+
            while(toggleKeyBind.wasPressed()) {
                toggle = !toggle;
                if(toggle) {
@@ -51,6 +57,7 @@ public class XpushClient implements ClientModInitializer {
                         client.player,
                         Hand.MAIN_HAND
                 );
+                delay = 5;
             }
 
         });
