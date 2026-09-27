@@ -30,7 +30,7 @@ public class XpushClient implements ClientModInitializer {
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if(delay >0){
+            if(delay >= 0){
                 delay--;
                 return;
             }
