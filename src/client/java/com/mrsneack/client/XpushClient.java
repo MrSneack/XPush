@@ -1,5 +1,6 @@
 package com.mrsneack.client;
 
+import com.mrsneack.client.modules.XPushScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 
@@ -18,22 +19,30 @@ public class XpushClient implements ClientModInitializer {
 
     public static KeyBinding toggleKeyBind;
     public static boolean toggle;
-    public static Category category = Category.create(Identifier.of("xpush"));
-    public int delay = 0;
+    public static Category xpushCategory = Category.create(Identifier.of("xpush"));
+    public static int delay = 0;
+    public static int delayTimer = 0;
+    public static KeyBinding openGUI;
+
     @Override
     public void onInitializeClient() {
+
         toggleKeyBind = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.xpush.toggle",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_K,
-                category
+                xpushCategory
         ));
 
+        openGUI = KeyBindingHelper.registerKeyBinding(new KeyBinding( "key.xpush.openGUI", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G, XpushClient.xpushCategory ));
+
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if(delay >= 0){
-                delay--;
-                return;
-            }
+           while (openGUI.wasPressed())
+           {
+               if(client.currentScreen instanceof XPushScreen)
+               { client.setScreen(null); System.out.println("[XPush] Opening GUI"); }
+               else  { client.setScreen(new XPushScreen()); System.out.println("[XPush] Closing GUI"); }
+           };
 
            while(toggleKeyBind.wasPressed()) {
                toggle = !toggle;
@@ -45,10 +54,16 @@ public class XpushClient implements ClientModInitializer {
                }
            }
 
+
+
             if(!toggle) {
                 return;
             }
             if (client.player == null || client.interactionManager == null) {
+                return;
+            }
+            if(delayTimer > 0){
+                delayTimer--;
                 return;
             }
             var stack = client.player.getMainHandStack();
@@ -57,7 +72,7 @@ public class XpushClient implements ClientModInitializer {
                         client.player,
                         Hand.MAIN_HAND
                 );
-                delay = 5;
+                delayTimer = delay;
             }
 
         });

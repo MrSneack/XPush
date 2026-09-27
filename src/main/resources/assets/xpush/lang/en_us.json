@@ -1,4 +1,6 @@
 {
   "key.xpush.toggle": "Toggle XPush",
-  "key.category.minecraft.xpush": "XPush"
+  "key.category.minecraft.xpush": "XPush",
+  "key.xpush.openGUI": "Open Xpush GUI",
+  "checkbox.xpush.enable": "Enable XPush"
 }
