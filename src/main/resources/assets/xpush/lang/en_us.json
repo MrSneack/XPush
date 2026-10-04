@@ -2,5 +2,8 @@
   "key.xpush.toggle": "Toggle XPush",
   "key.category.minecraft.xpush": "XPush",
   "key.xpush.openGUI": "Open Xpush GUI",
-  "checkbox.xpush.enable": "Enable XPush"
+  "key.xpush.debug": "Enable Debug",
+  "checkbox.xpush.enable": "Enable XPush",
+  "checkbox.xpush.debug": "Enable Debug",
+  "text.xpush.menu": "XPush Menu"
 }

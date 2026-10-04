@@ -52,6 +52,7 @@ public class XPushScreen extends Screen {
             }
         );
         this.addDrawableChild(this.slider);
+
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
@@ -63,8 +64,13 @@ public class XPushScreen extends Screen {
                 delta
         );
 
-        context.drawCenteredTextWithShadow(
-                this.textRenderer, Text.literal("XPush Menu"), this.width / 2, this.height / 2 - 90, 0xFFFFFFFF
+        MenuTitle(
+                context,
+                Text.translatable("text.xpush.menu"),
+                this.width / 2,
+                this.height / 2 - 90,
+                0x00E5FF,
+                0x9D00FF
         );
 
         context.drawCenteredTextWithShadow(
@@ -103,6 +109,71 @@ public class XPushScreen extends Screen {
             this.onChange.accept(delay);
 
             updateMessage();
+        }
+    }
+
+    private int interpolateColor(
+            int startColor,
+            int endColor,
+            float progress
+    ) {
+        int startR = (startColor >> 16) & 0xFF;
+        int startG = (startColor >> 8) & 0xFF;
+        int startB = startColor & 0xFF;
+
+        int endR = (endColor >> 16) & 0xFF;
+        int endG = (endColor >> 8) & 0xFF;
+        int endB = endColor & 0xFF;
+
+        int r = (int) (startR + (endR - startR) * progress);
+        int g = (int) (startG + (endG - startG) * progress);
+        int b = (int) (startB + (endB - startB) * progress);
+
+        return 0xFF000000
+                | (r << 16)
+                | (g << 8)
+                | b;
+    }
+
+    private void MenuTitle(
+            DrawContext context,
+            Text text,
+            int centerX,
+            int y,
+            int color1,
+            int color2
+    ) {
+        String string = text.getString();
+
+        int totalWidth = this.textRenderer.getWidth(string);
+        int x = centerX - totalWidth / 2;
+
+        float time = (System.currentTimeMillis() % 3000L) / 3000.0f;
+
+        for (int i = 0; i < string.length(); i++) {
+
+            String character = String.valueOf(string.charAt(i));
+
+            float progress =
+                    ((float) i / Math.max(1, string.length() - 1)
+                            + time) % 1.0f;
+
+            int color = interpolateColor(
+                    color1,
+                    color2,
+                    progress
+            );
+
+            context.drawText(
+                    this.textRenderer,
+                    character,
+                    x,
+                    y,
+                    color,
+                    true
+            );
+
+            x += this.textRenderer.getWidth(character);
         }
     }
 }
