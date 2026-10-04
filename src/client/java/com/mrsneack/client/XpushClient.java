@@ -10,6 +10,8 @@ import net.minecraft.client.option.KeyBinding;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.item.Items;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
@@ -23,7 +25,6 @@ public class XpushClient implements ClientModInitializer {
     public static int delay = 1;
     public static int delayTimer = 0;
     public static KeyBinding openGUI;
-    public static KeyBinding debugKey;
     public static boolean debug = false;
 
     @Override
@@ -37,7 +38,6 @@ public class XpushClient implements ClientModInitializer {
         ));
 
         openGUI = KeyBindingHelper.registerKeyBinding(new KeyBinding( "key.xpush.openGUI", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_RIGHT_SHIFT, XpushClient.xpushCategory ));
-        debugKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.xpush.debug", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G, XpushClient.xpushCategory));
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
            while (openGUI.wasPressed())
            {
@@ -55,29 +55,31 @@ public class XpushClient implements ClientModInitializer {
                }
            };
 
+            if (client.player == null || client.interactionManager == null) {
+                return;
+            }
+
            while(toggleKeyBind.wasPressed()) {
                toggle = !toggle;
-               if(toggle && debug) {
-                   System.out.println("[XPush] Enabled");
+               if(toggle) {
+                   client.player.sendMessage(Text.literal("[XPush] ").formatted(Formatting.AQUA).append(Text.literal("Enabled").formatted(Formatting.LIGHT_PURPLE)), false);
                }
-               if(!toggle && debug) {
-                   System.out.println("[XPush] Disabled");
+               if(!toggle) {
+                   client.player.sendMessage(Text.literal("[XPush] ").formatted(Formatting.AQUA).append(Text.literal("Disabled").formatted(Formatting.DARK_PURPLE)), false);
                }
            }
-
-
 
             if(!toggle) {
                 return;
             }
-            if (client.player == null || client.interactionManager == null) {
-                return;
-            }
+
             if(delayTimer > 0){
                 delayTimer--;
                 return;
             }
+
             var stack = client.player.getMainHandStack();
+
             if(stack.isOf(Items.EXPERIENCE_BOTTLE) && client.options.useKey.isPressed()) {
                 client.interactionManager.interactItem(
                         client.player,
