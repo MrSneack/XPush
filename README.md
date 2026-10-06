@@ -49,7 +49,7 @@ XPush requires:
 
 Install the appropriate version of Fabric Loader and Fabric API for your Minecraft version.
 
-Place the XPush `.jar` file into:
+Place the XPush.jar file into:
 
 ```text
 .minecraft/mods
