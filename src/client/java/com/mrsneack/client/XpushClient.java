@@ -36,7 +36,7 @@ public class XpushClient implements ClientModInitializer {
                 xpushCategory
         ));
 
-        openGUI = KeyBindingHelper.registerKeyBinding(new KeyBinding( "key.xpush.openGUI", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_RIGHT_SHIFT, XpushClient.xpushCategory ));
+        openGUI = KeyBindingHelper.registerKeyBinding(new KeyBinding( "key.xpush.openGUI", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_K, XpushClient.xpushCategory ));
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
            while (openGUI.wasPressed())
            {
