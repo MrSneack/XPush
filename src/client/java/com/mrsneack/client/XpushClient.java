@@ -25,7 +25,6 @@ public class XpushClient implements ClientModInitializer {
     public static int delay = 1;
     public static int delayTimer = 0;
     public static KeyBinding openGUI;
-    public static boolean debug = false;
 
     @Override
     public void onInitializeClient() {
@@ -43,15 +42,11 @@ public class XpushClient implements ClientModInitializer {
            {
                if(client.currentScreen instanceof XPushScreen) {
                    client.setScreen(null);
-                   if(debug) {
-                       System.out.println("[XPush] Opening GUI");
-                   }
+                   System.out.println("[XPush] Opening GUI");
                }
                else {
                    client.setScreen(new XPushScreen());
-                   if(debug) {
-                       System.out.println("[XPush] Closing GUI");
-                   }
+                   System.out.println("[XPush] Closing GUI");
                }
            };
 
@@ -62,10 +57,10 @@ public class XpushClient implements ClientModInitializer {
            while(toggleKeyBind.wasPressed()) {
                toggle = !toggle;
                if(toggle) {
-                   client.player.sendMessage(Text.literal("[XPush] ").formatted(Formatting.AQUA).append(Text.literal("Enabled").formatted(Formatting.LIGHT_PURPLE)), false);
+                   client.player.sendMessage(Text.literal("[XPush] ").formatted(Formatting.AQUA).append(Text.literal("Enabled").formatted(Formatting.GREEN)), false);
                }
                if(!toggle) {
-                   client.player.sendMessage(Text.literal("[XPush] ").formatted(Formatting.AQUA).append(Text.literal("Disabled").formatted(Formatting.DARK_PURPLE)), false);
+                   client.player.sendMessage(Text.literal("[XPush] ").formatted(Formatting.AQUA).append(Text.literal("Disabled").formatted(Formatting.DARK_RED)), false);
                }
            }
 
