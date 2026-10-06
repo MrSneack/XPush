@@ -8,3 +8,7 @@
 
 - Removed Debug
 - Change Chat Message Colors
+
+# 1.0
+
+- Version For upload to curseforge and modrinth
