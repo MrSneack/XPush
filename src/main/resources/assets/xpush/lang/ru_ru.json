@@ -3,5 +3,7 @@
   "key.category.minecraft.xpush": "XPush",
   "key.xpush.openGUI": "Открыть меню XPush",
   "checkbox.xpush.enable": "Включить XPush",
-  "text.xpush.menu": "XPush Menu"
+  "text.xpush.menu": "XPush Menu",
+  "text.xpush.enabled": "Включен",
+  "text.xpush.disabled": "Выключен"
 }

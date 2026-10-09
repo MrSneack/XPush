@@ -6,6 +6,7 @@ import net.minecraft.client.gui.widget.CheckboxWidget;
 import net.minecraft.client.gui.widget.SliderWidget;
 import net.minecraft.text.Text;
 import com.mrsneack.client.XpushClient;
+import net.minecraft.util.Formatting;
 
 import java.awt.*;
 
@@ -15,9 +16,11 @@ public class XPushScreen extends Screen {
 
     public DelaySlider slider;
 
+    private Text text;
     // creating XPush Screen
     public XPushScreen() {
         super(Text.of("XPush Menu"));
+        text = null;
     }
 
     @Override
@@ -84,9 +87,14 @@ public class XPushScreen extends Screen {
         context.drawCenteredTextWithShadow(
                 this.textRenderer, Text.literal("Delay: " + XpushClient.config.delay), this.width / 2, this.height / 2 + 25, 0xFFFFFFFF
         );
+        if(XpushClient.config.enabled) {
+            text = Text.translatable("text.xpush.enabled").formatted(Formatting.GREEN);
+        }if(!XpushClient.config.enabled) {
+            text = Text.translatable("text.xpush.disabled").formatted(Formatting.RED);
+        }
         // creating enabled static text
         context.drawCenteredTextWithShadow(
-                this.textRenderer, Text.literal("Enabled: " + XpushClient.config.enabled), this.width / 2, this.height / 2 + 40, 0xFFFFFFFF
+                this.textRenderer, Text.literal("Enabled: " + text), this.width / 2, this.height / 2 + 40, 0xFFFFFFFF
         );
     }
     // custom slider method
