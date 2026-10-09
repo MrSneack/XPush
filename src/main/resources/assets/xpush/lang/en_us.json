@@ -5,5 +5,7 @@
   "checkbox.xpush.enable": "Enable XPush",
   "text.xpush.menu": "XPush Menu",
   "text.xpush.enabled": "Enabled",
-  "text.xpush.disabled": "Disabled"
+  "text.xpush.disabled": "Disabled",
+  "text.xpush.delay": "Delay: ",
+  "text.xpush.status": "XPush Status: "
 }

@@ -56,7 +56,7 @@ public class XPushScreen extends Screen {
             centerY - 20,
             200,
             20,
-            Text.literal("Delay"),
+            Text.translatable("text.xpush.delay"),
             (XpushClient.config.delay - 1) / 19.0,
             value -> {
                 XpushClient.config.delay = value;
@@ -85,7 +85,7 @@ public class XPushScreen extends Screen {
         );
         // creating delay static text
         context.drawCenteredTextWithShadow(
-                this.textRenderer, Text.literal("Delay: " + XpushClient.config.delay), this.width / 2, this.height / 2 + 25, 0xFFFFFFFF
+                this.textRenderer, Text.translatable("text.xpush.delay").append(String.valueOf(XpushClient.config.delay)), this.width / 2, this.height / 2 + 25, 0xFFFFFFFF
         );
         if(XpushClient.config.enabled) {
             text = Text.translatable("text.xpush.enabled").formatted(Formatting.GREEN);
@@ -94,7 +94,7 @@ public class XPushScreen extends Screen {
         }
         // creating enabled static text
         context.drawCenteredTextWithShadow(
-                this.textRenderer, Text.literal("Enabled: " + text), this.width / 2, this.height / 2 + 40, 0xFFFFFFFF
+                this.textRenderer, Text.translatable("text.xpush.status").append(text), this.width / 2, this.height / 2 + 40, 0xFFFFFFFF
         );
     }
     // custom slider method
@@ -116,7 +116,7 @@ public class XPushScreen extends Screen {
         // event which update in slider text
         public void updateMessage() {
             this.setMessage(
-                    Text.literal("Delay: " + this.getDelay())
+                    Text.translatable("text.xpush.delay").append(String.valueOf(this.getDelay()))
             );
         }
 
