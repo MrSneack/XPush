@@ -7,5 +7,9 @@
   "text.xpush.enabled": "Включен",
   "text.xpush.disabled": "Выключен",
   "text.xpush.delay": "Задержка: ",
-  "text.xpush.status": "Статус XPush: "
+  "text.xpush.status": "Статус XPush: ",
+  "text.xpush.defaultCommand": "Используйте: /xpush",
+  "text.xpush.setDelay": "Задержка установлена на ",
+  "text.xpush.setEnabled": "XPush ",
+  "text.xpush.setEnabledGUI": "XPush GUI "
 }

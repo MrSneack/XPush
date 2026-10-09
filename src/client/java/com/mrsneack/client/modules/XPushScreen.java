@@ -16,11 +16,12 @@ public class XPushScreen extends Screen {
 
     public DelaySlider slider;
 
-    private Text text;
+    private Text enabledText;
+
     // creating XPush Screen
     public XPushScreen() {
         super(Text.of("XPush Menu"));
-        text = null;
+        enabledText = null;
     }
 
     @Override
@@ -88,13 +89,13 @@ public class XPushScreen extends Screen {
                 this.textRenderer, Text.translatable("text.xpush.delay").append(String.valueOf(XpushClient.config.delay)), this.width / 2, this.height / 2 + 25, 0xFFFFFFFF
         );
         if(XpushClient.config.enabled) {
-            text = Text.translatable("text.xpush.enabled").formatted(Formatting.GREEN);
+            enabledText = Text.translatable("text.xpush.enabled").formatted(Formatting.GREEN);
         }if(!XpushClient.config.enabled) {
-            text = Text.translatable("text.xpush.disabled").formatted(Formatting.RED);
+            enabledText = Text.translatable("text.xpush.disabled").formatted(Formatting.RED);
         }
         // creating enabled static text
         context.drawCenteredTextWithShadow(
-                this.textRenderer, Text.translatable("text.xpush.status").append(text), this.width / 2, this.height / 2 + 40, 0xFFFFFFFF
+                this.textRenderer, Text.translatable("text.xpush.status").append(enabledText), this.width / 2, this.height / 2 + 40, 0xFFFFFFFF
         );
     }
     // custom slider method

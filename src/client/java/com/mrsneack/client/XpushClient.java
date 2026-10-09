@@ -1,5 +1,6 @@
 package com.mrsneack.client;
 
+import com.mrsneack.client.modules.XPushCommands;
 import com.mrsneack.client.modules.XPushSave;
 import com.mrsneack.client.modules.XPushScreen;
 import net.fabricmc.api.ClientModInitializer;
@@ -16,6 +17,8 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
+
+import java.awt.*;
 
 import static net.minecraft.util.Hand.MAIN_HAND;
 import static net.minecraft.util.Hand.OFF_HAND;
@@ -34,6 +37,9 @@ public class XpushClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        // Registration all commands on start client
+        XPushCommands.register();
+
         // initialize config in minecraft start
         config = saveManager.load();
         // Create toggle key bind
@@ -79,11 +85,11 @@ public class XpushClient implements ClientModInitializer {
                 config.enabled = !config.enabled;
                 // if XPush enabled with keybind send in chat message about enabling
                 if (config.enabled) {
-                    client.player.sendMessage(Text.literal("[XPush] ").formatted(Formatting.AQUA).append(Text.literal("Enabled").formatted(Formatting.GREEN)), false);
+                    client.player.sendMessage(Text.literal("XPush ").formatted(Formatting.AQUA).append(Text.translatable("text.xpush.enabled").formatted(Formatting.GREEN)), false);
                 }
                 // if XPush disabled with keybind send in chat message about disabling
                 if (!config.enabled) {
-                    client.player.sendMessage(Text.literal("[XPush] ").formatted(Formatting.AQUA).append(Text.literal("Disabled").formatted(Formatting.DARK_RED)), false);
+                    client.player.sendMessage(Text.literal("XPush ").formatted(Formatting.AQUA).append(Text.translatable("text.xpush.disabled").formatted(Formatting.RED)), false);
                 }
                 saveManager.save();
             }
@@ -122,6 +128,5 @@ public class XpushClient implements ClientModInitializer {
             }
 
         });
-
     }
 }

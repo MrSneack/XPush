@@ -4,6 +4,14 @@ XPush is a lightweight client-side Fabric mod for Minecraft that provides faster
 
 The mod automatically uses experience bottles while the standard item-use key is held. The delay between uses can be configured through the built-in interface.
 
+
+## Compatibility
+
+XPush is a client-side mod. It does not need to be installed on the server.
+
+Server rules and anti-cheat systems may restrict or prohibit the use of client-side automation. Make sure that the mod is permitted on the server you are using.
+
+
 ## Features
 
 * Fast repeated use of Bottle o' Enchanting
@@ -16,6 +24,7 @@ The mod automatically uses experience bottles while the standard item-use key is
 * Client-side only
 * No server-side installation required
 * Save system
+* Command System
 
 ## Controls
 
@@ -38,6 +47,14 @@ Keybindings can be changed in:
 4. Select the desired delay.
 5. Hold the standard item-use key.
 
+**AND**
+
+**Use /xpush delay (delay from 1 to 20) for change delay**
+
+**Use /xpush enable true/false for enable or disable xpush**
+
+**Use /xpush enabheGUI true/false for enable or disable GUI** 
+
 XPush will automatically use the experience bottles according to the selected delay.
 
 ## Installation
@@ -47,29 +64,6 @@ XPush requires:
 * Minecraft
 * Fabric Loader
 * Fabric API
-
-Install the appropriate version of Fabric Loader and Fabric API for your Minecraft version.
-
-Place the XPush.jar file into:
-
-```text
-.minecraft/mods
-```
-
-Then launch Minecraft using the Fabric profile.
-
-
-## Compatibility
-
-XPush is a client-side mod. It does not need to be installed on the server.
-
-Server rules and anti-cheat systems may restrict or prohibit the use of client-side automation. Make sure that the mod is permitted on the server you are using.
-
-## Development
-
-The project is maintained as a version-specific Fabric mod to accommodate differences between Minecraft releases and their respective APIs.
-
-Source code and development information are available in the project repository.
 
 ## License
 

@@ -7,5 +7,9 @@
   "text.xpush.enabled": "Enabled",
   "text.xpush.disabled": "Disabled",
   "text.xpush.delay": "Delay: ",
-  "text.xpush.status": "XPush Status: "
+  "text.xpush.status": "XPush Status: ",
+  "text.xpush.defaultCommand": "Use: /xpush",
+  "text.xpush.setDelay": "Delay set to ",
+  "text.xpush.setEnabled": "XPush ",
+  "text.xpush.setEnabledGUI": "XPush GUI "
 }
