@@ -6,6 +6,6 @@ public class Xpush implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        System.out.println("TestMessage");
+
     }
 }

@@ -3,7 +3,7 @@
   "id": "xpush",
   "version": "${version}",
   "name": "XPush",
-  "description": "",
+  "description": "A lightweight client-side utility for faster experience bottle usage.",
   "authors": [
     "MrSneack"
   ],

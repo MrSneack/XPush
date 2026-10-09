@@ -15,6 +15,7 @@ The mod automatically uses experience bottles while the standard item-use key is
 * Localization support
 * Client-side only
 * No server-side installation required
+* Save system
 
 ## Controls
 
@@ -76,6 +77,3 @@ XPush is distributed under the license included with the project.
 
 See the `LICENSE` file for the complete terms.
 
-## Author
-
-Created by **MrSneack**.

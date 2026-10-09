@@ -1,5 +1,6 @@
 package com.mrsneack.client;
 
+import com.mrsneack.client.modules.XPushSave;
 import com.mrsneack.client.modules.XPushScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -22,17 +23,20 @@ import static net.minecraft.util.Hand.OFF_HAND;
 public class XpushClient implements ClientModInitializer {
 
     public static KeyBinding toggleKeyBind;
-    public static boolean toggle;
     public static Category xpushCategory = Category.create(Identifier.of("xpush"));
-    public static int delay = 1;
     public static int delayTimer = 0;
     public static KeyBinding openGUI;
-    public static boolean GUIEnabled = true;
     public static Hand hand;
+    public static final XPushSave saveManager = new XPushSave();
+
+    // set XPushData to variable for editing
+    public static XPushSave.XPushData config = saveManager.load();
 
     @Override
     public void onInitializeClient() {
-//        Create toggle key bind
+        // initialize config in minecraft start
+        config = saveManager.load();
+        // Create toggle key bind
         toggleKeyBind = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.xpush.toggle",
                 InputUtil.Type.KEYSYM,
@@ -51,7 +55,7 @@ public class XpushClient implements ClientModInitializer {
         // Event calling every tick
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             // while if keybind pressed and GUIEnabled has true
-            while (openGUI.wasPressed() && GUIEnabled) {
+            while (openGUI.wasPressed() && config.enabledGUI) {
                 // Open GUI if his closed
                 if (client.currentScreen instanceof XPushScreen) {
                     client.setScreen(null);
@@ -72,19 +76,19 @@ public class XpushClient implements ClientModInitializer {
 
             // while if toggle Keybind pressed
             while (toggleKeyBind.wasPressed()) {
-                // change toggle
-                toggle = !toggle;
+                config.enabled = !config.enabled;
                 // if XPush enabled with keybind send in chat message about enabling
-                if (toggle) {
+                if (config.enabled) {
                     client.player.sendMessage(Text.literal("[XPush] ").formatted(Formatting.AQUA).append(Text.literal("Enabled").formatted(Formatting.GREEN)), false);
                 }
                 // if XPush disabled with keybind send in chat message about disabling
-                if (!toggle) {
+                if (!config.enabled) {
                     client.player.sendMessage(Text.literal("[XPush] ").formatted(Formatting.AQUA).append(Text.literal("Disabled").formatted(Formatting.DARK_RED)), false);
                 }
+                saveManager.save();
             }
 
-            if (!toggle) {
+            if (!config.enabled) {
                 return;
             }
 
@@ -114,7 +118,7 @@ public class XpushClient implements ClientModInitializer {
                         hand
                 );
                 // set timer
-                delayTimer = delay + 1;
+                delayTimer = config.delay + 1;
             }
 
         });
