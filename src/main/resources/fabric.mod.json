@@ -10,7 +10,7 @@
   "contact": {},
   "license": "MIT",
   "icon": "assets/xpush/icon.png",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "client": [
       "com.mrsneack.client.XpushClient"
