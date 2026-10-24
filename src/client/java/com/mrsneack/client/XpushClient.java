@@ -6,7 +6,6 @@ import com.mrsneack.client.modules.XPushScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 
-import net.minecraft.client.option.KeyBinding.Category;
 import net.minecraft.client.option.KeyBinding;
 
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
