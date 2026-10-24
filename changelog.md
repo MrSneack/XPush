@@ -18,7 +18,14 @@
 - **Added command system for enable and disable XPush and GUI, change delay**
 - Update README
 - Update Texts formatting
-- Update localization
+- Update RU localization
 - Change the chat message on enable/disable XPush on keybind
 - Bug Fixes
 - Update save system
+
+# 1.2.1
+
+- Update README
+- Minor code optimization
+- Minor corrections of errors and shortcomings
+- Minor file structure optimization

@@ -71,7 +71,7 @@ public class XPushSave {
                 data = loaded != null ? loaded : new XPushData();
 
                 // Validate delay
-                data.delay = Math.max(1, data.delay);
+                data.delay = Math.max(1, Math.min(20, data.delay));
 
                 return data;
             }

@@ -1,7 +1,5 @@
 # XPush
 
-XPush is a lightweight client-side Fabric mod for Minecraft that provides faster and more convenient use of Bottle o' Enchanting.
-
 The mod automatically uses experience bottles while the standard item-use key is held. The delay between uses can be configured through the built-in interface.
 
 
@@ -51,9 +49,9 @@ Keybindings can be changed in:
 
 **Use /xpush delay (delay from 1 to 20) for change delay**
 
-**Use /xpush enable true/false for enable or disable xpush**
+**Use /xpush enabled true/false for enable or disable xpush**
 
-**Use /xpush enabheGUI true/false for enable or disable GUI** 
+**Use /xpush enabledGUI true/false for enable or disable GUI** 
 
 XPush will automatically use the experience bottles according to the selected delay.
 

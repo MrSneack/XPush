@@ -12,9 +12,6 @@
   "icon": "assets/xpush/icon.png",
   "environment": "*",
   "entrypoints": {
-    "fabric-datagen": [
-      "com.mrsneack.client.XpushDataGenerator"
-    ],
     "client": [
       "com.mrsneack.client.XpushClient"
     ],
@@ -22,13 +19,6 @@
       "com.mrsneack.Xpush"
     ]
   },
-  "mixins": [
-    "xpush.mixins.json",
-    {
-      "config": "xpush.client.mixins.json",
-      "environment": "client"
-    }
-  ],
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric-api": "*",

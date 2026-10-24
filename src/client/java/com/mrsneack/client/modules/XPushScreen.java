@@ -8,8 +8,6 @@ import net.minecraft.text.Text;
 import com.mrsneack.client.XpushClient;
 import net.minecraft.util.Formatting;
 
-import java.awt.*;
-
 public class XPushScreen extends Screen {
 
     public CheckboxWidget checkbox;
@@ -20,7 +18,7 @@ public class XPushScreen extends Screen {
 
     // creating XPush Screen
     public XPushScreen() {
-        super(Text.of("XPush Menu"));
+        super(Text.translatable("text.xpush.menu"));
         enabledText = null;
     }
 

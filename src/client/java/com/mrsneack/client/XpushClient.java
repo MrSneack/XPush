@@ -18,8 +18,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
-import java.awt.*;
-
 import static net.minecraft.util.Hand.MAIN_HAND;
 import static net.minecraft.util.Hand.OFF_HAND;
 
@@ -55,7 +53,7 @@ public class XpushClient implements ClientModInitializer {
                 "key.xpush.openGUI",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_G,
-                XpushClient.xpushCategory
+                xpushCategory
         ));
 
         // Event calling every tick
@@ -65,12 +63,12 @@ public class XpushClient implements ClientModInitializer {
                 // Open GUI if his closed
                 if (client.currentScreen instanceof XPushScreen) {
                     client.setScreen(null);
-                    System.out.println("[XPush] Opening GUI");
+                    System.out.println("[XPush] Closing GUI");
                 }
                 // Close GUI if his opened
                 else {
                     client.setScreen(new XPushScreen());
-                    System.out.println("[XPush] Closing GUI");
+                    System.out.println("[XPush] Opening GUI");
                 }
             }
 
@@ -118,7 +116,7 @@ public class XpushClient implements ClientModInitializer {
             }
 
             // if in hand experience bottle and player hold right mouse key using item
-            if(hand != null && client.options.useKey.isPressed()) {
+            if(client.currentScreen == null && hand != null && client.options.useKey.isPressed()) {
                 client.interactionManager.interactItem(
                         client.player,
                         hand

@@ -9,6 +9,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 public class XPushCommands {
+
     private XPushCommands(){
     }
 
