@@ -7,6 +7,8 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 
 import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.option.KeyBinding.Category;
+import net.minecraft.util.Identifier;
 
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.util.InputUtil;
@@ -16,13 +18,14 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import org.lwjgl.glfw.GLFW;
 
+
 import static net.minecraft.util.Hand.MAIN_HAND;
 import static net.minecraft.util.Hand.OFF_HAND;
 
 public class XpushClient implements ClientModInitializer {
 
     public static KeyBinding toggleKeyBind;
-    public static final String xpushCategory = "XPush";
+    public static final Category xpushCategory = Category.create(Identifier.of("xpush"));
     public static int delayTimer = 0;
     public static KeyBinding openGUI;
     public static Hand hand;
