@@ -59,7 +59,7 @@ public class XpushClient implements ClientModInitializer {
         // Event calling every tick
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             // while if keybind pressed and GUIEnabled has true
-            while (openGUI.wasPressed() && config.enabledGUI) {
+            if (openGUI.wasPressed() && config.enabledGUI) {
                 // Open GUI if his closed
                 if (client.currentScreen instanceof XPushScreen) {
                     client.setScreen(null);
@@ -79,7 +79,7 @@ public class XpushClient implements ClientModInitializer {
             }
 
             // while if toggle Keybind pressed
-            while (toggleKeyBind.wasPressed()) {
+            if (toggleKeyBind.wasPressed()) {
                 config.enabled = !config.enabled;
                 // if XPush enabled with keybind send in chat message about enabling
                 if (config.enabled) {
@@ -122,7 +122,7 @@ public class XpushClient implements ClientModInitializer {
                         hand
                 );
                 // set timer
-                delayTimer = config.delay + 1;
+                delayTimer = config.delay;
             }
 
         });
