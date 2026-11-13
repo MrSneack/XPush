@@ -58,6 +58,12 @@ public class XpushClient implements ClientModInitializer {
 
         // Event calling every tick
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
+
+            // if client equal null and integrationManager equal null else return 0
+            if (client.player == null || client.interactionManager == null || client.world == null) {
+                return;
+            }
+
             // while if keybind pressed and GUIEnabled has true
             if (openGUI.wasPressed() && config.enabledGUI) {
                 // Open GUI if his closed
@@ -72,14 +78,8 @@ public class XpushClient implements ClientModInitializer {
                 }
             }
 
-
-            // if client equal null and integrationManager equal null else return 0
-            if (client.player == null || client.interactionManager == null) {
-                return;
-            }
-
             // while if toggle Keybind pressed
-            if (toggleKeyBind.wasPressed()) {
+            while (toggleKeyBind.wasPressed()) {
                 config.enabled = !config.enabled;
                 // if XPush enabled with keybind send in chat message about enabling
                 if (config.enabled) {
@@ -94,13 +94,11 @@ public class XpushClient implements ClientModInitializer {
 
             if (!config.enabled) {
                 delayTimer = 0;
-                return;
             }
 
             // if timer less 0 perform code
             if (delayTimer > 0) {
                 delayTimer--;
-                return;
             }
             // assign an item in hand to a variable
             var stack = client.player.getMainHandStack();
