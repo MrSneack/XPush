@@ -59,7 +59,6 @@ public class XPushScreen extends Screen {
             (XpushClient.config.delay - 1) / 19.0,
             value -> {
                 XpushClient.config.delay = value;
-                XpushClient.saveManager.save();
             }
         );
         // add custom slider to render context
@@ -127,7 +126,8 @@ public class XPushScreen extends Screen {
             this.value = (delay - 1) / 19.0;
 
             this.onChange.accept(delay);
-
+            XpushClient.config.delay = delay;
+            XpushClient.saveManager.save();
             updateMessage();
         }
     }

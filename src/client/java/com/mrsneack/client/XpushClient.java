@@ -93,6 +93,7 @@ public class XpushClient implements ClientModInitializer {
             }
 
             if (!config.enabled) {
+                delayTimer = 0;
                 return;
             }
 
@@ -101,7 +102,6 @@ public class XpushClient implements ClientModInitializer {
                 delayTimer--;
                 return;
             }
-
             // assign an item in hand to a variable
             var stack = client.player.getMainHandStack();
             var off_stack = client.player.getOffHandStack();

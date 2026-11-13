@@ -17,6 +17,7 @@ public class XPushSave {
         public int delay = 1;
         public boolean enabled = false;
         public boolean enabledGUI = true;
+        public boolean enabledAAC = false;
     }
 
     private final Path path = FabricLoader.getInstance()
