@@ -79,7 +79,7 @@ public class XpushClient implements ClientModInitializer {
             }
 
             // while if toggle Keybind pressed
-            while (toggleKeyBind.wasPressed()) {
+            if (toggleKeyBind.wasPressed()) {
                 config.enabled = !config.enabled;
                 // if XPush enabled with keybind send in chat message about enabling
                 if (config.enabled) {
@@ -94,11 +94,15 @@ public class XpushClient implements ClientModInitializer {
 
             if (!config.enabled) {
                 delayTimer = 0;
+                return;
             }
 
             // if timer less 0 perform code
             if (delayTimer > 0) {
                 delayTimer--;
+            }
+            if(delayTimer > 0) {
+                return;
             }
             // assign an item in hand to a variable
             var stack = client.player.getMainHandStack();
