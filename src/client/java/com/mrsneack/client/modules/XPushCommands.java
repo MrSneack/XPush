@@ -61,7 +61,23 @@ public class XPushCommands {
                                                     })
                                     )
                             )
-
+                            .then(ClientCommandManager.literal("enabledJitter"))
+                                    .then(ClientCommandManager.argument(
+                                        "enabledJitter",
+                                        BoolArgumentType.bool())
+                                    )
+                            .executes(context -> {
+                                XpushClient.config.enabledJitter = BoolArgumentType.getBool(context, "enabledJitter");
+                                Text enabledJitterCommandText;
+                                if (XpushClient.config.enabledJitter) {
+                                    enabledJitterCommandText = Text.translatable("text.xpush.enabled").formatted(Formatting.GREEN);
+                                } else {
+                                    enabledJitterCommandText = Text.translatable("text.xpush.disabled").formatted(Formatting.RED);
+                                }
+                                context.getSource().sendFeedback(Text.translatable("text.xpush.setJitter").formatted(Formatting.AQUA).append(enabledJitterCommandText));
+                                XpushClient.saveManager.save();
+                                return 1;
+                            })
                             // Create subcommand for change Gui enabled
                             .then(ClientCommandManager.literal("enabledGUI")
                                     .then(ClientCommandManager.argument(

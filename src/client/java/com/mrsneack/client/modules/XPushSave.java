@@ -12,12 +12,13 @@ import java.nio.file.Path;
 
 public class XPushSave {
 
+    public XPushLogger LOGGER = new XPushLogger();
     // Default data
     public static class XPushData {
         public int delay = 1;
         public boolean enabled = false;
         public boolean enabledGUI = true;
-        public boolean enabledAAC = false;
+        public boolean enabledJitter = false;
     }
 
     private final Path path = FabricLoader.getInstance()
@@ -44,8 +45,7 @@ public class XPushSave {
             }
 
         } catch (IOException e) {
-            System.err.println("[XPush] Failed to save config!");
-            e.printStackTrace();
+            LOGGER.ERROR("[XPush] Failed to save config!");
         }
     }
 
@@ -78,9 +78,7 @@ public class XPushSave {
             }
 
         } catch (Exception e) {
-            System.err.println("[XPush] Failed to load config!");
-            e.printStackTrace();
-
+            LOGGER.ERROR("[XPush] Failed to load config!");
             data = new XPushData();
             return data;
         }

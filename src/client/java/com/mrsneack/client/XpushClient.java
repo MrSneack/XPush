@@ -1,6 +1,7 @@
 package com.mrsneack.client;
 
 import com.mrsneack.client.modules.XPushCommands;
+import com.mrsneack.client.modules.XPushLogger;
 import com.mrsneack.client.modules.XPushSave;
 import com.mrsneack.client.modules.XPushScreen;
 import net.fabricmc.api.ClientModInitializer;
@@ -32,6 +33,7 @@ public class XpushClient implements ClientModInitializer {
 
     // set XPushData to variable for editing
     public static XPushSave.XPushData config = saveManager.load();
+    public XPushLogger LOGGER = new XPushLogger();
 
     @Override
     public void onInitializeClient() {
@@ -69,12 +71,12 @@ public class XpushClient implements ClientModInitializer {
                 // Open GUI if his closed
                 if (client.currentScreen instanceof XPushScreen) {
                     client.setScreen(null);
-                    System.out.println("[XPush] Closing GUI");
+                    LOGGER.INFO("[XPush] Closing GUI");
                 }
                 // Close GUI if his opened
                 else {
                     client.setScreen(new XPushScreen());
-                    System.out.println("[XPush] Opening GUI");
+                    LOGGER.INFO("[XPush] Opening GUI");
                 }
             }
 

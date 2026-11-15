@@ -11,5 +11,6 @@
   "text.xpush.defaultCommand": "Используйте: /xpush",
   "text.xpush.setDelay": "Задержка установлена на ",
   "text.xpush.setEnabled": "XPush ",
-  "text.xpush.setEnabledGUI": "XPush GUI "
+  "text.xpush.setEnabledGUI": "XPush GUI ",
+  "text.xpush.setJitter": "Timing Jitter "
 }

@@ -29,3 +29,7 @@
 - Minor code optimization
 - Minor corrections of errors and shortcomings
 - Minor file structure optimization
+
+# 1.3.0
+
+- 

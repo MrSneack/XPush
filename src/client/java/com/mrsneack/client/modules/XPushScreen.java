@@ -10,11 +10,12 @@ import net.minecraft.util.Formatting;
 
 public class XPushScreen extends Screen {
 
-    public CheckboxWidget checkbox;
-
+    public CheckboxWidget EnabledCheckbox;
     public DelaySlider slider;
-
     private Text enabledText;
+    public CheckboxWidget TimingJitterCheckbox;
+
+    public XPushLogger LOGGER = new XPushLogger();
 
     // creating XPush Screen
     public XPushScreen() {
@@ -32,7 +33,7 @@ public class XPushScreen extends Screen {
         int centerY = height / 2;
 
         // Create Checkbox
-        this.checkbox = CheckboxWidget.builder(
+        this.EnabledCheckbox = CheckboxWidget.builder(
                 Text.translatable("checkbox.xpush.enable"),
                 this.textRenderer
 
@@ -40,14 +41,30 @@ public class XPushScreen extends Screen {
             XpushClient.config.enabled = checked;
             XpushClient.saveManager.save();
             if (checked) {
-                System.out.println("[XPush] Enabled from GUI");
+                LOGGER.INFO("[XPush] Enabled from GUI");
             } else {
-                System.out.println("[XPush] Disabled from GUI");
+                LOGGER.INFO("[XPush] Disabled from GUI");
             }
         }).build();
 
         // adding checkbox to render context
-        this.addDrawableChild(this.checkbox);
+        this.addDrawableChild(this.EnabledCheckbox);
+
+        // Create Timing Jitter Checkbox
+        this.TimingJitterCheckbox = CheckboxWidget.builder(
+                Text.of("Enable Timing Jitter"),
+                this.textRenderer
+        ).pos(centerX - 100, centerY - 35).checked(XpushClient.config.enabledJitter).callback((checkbox, enabledJitter) -> {
+            XpushClient.config.enabledJitter = enabledJitter;
+            XpushClient.saveManager.save();
+            if(enabledJitter) {
+                LOGGER.INFO("[XPush] Enabled Timing Jitter");
+            } else {
+                LOGGER.INFO("[XPush] Disabled Timing Jitter");
+            }
+        }).build();
+
+        this.addDrawableChild(this.TimingJitterCheckbox);
 
         // creating custom slider
         this.slider = new DelaySlider(
