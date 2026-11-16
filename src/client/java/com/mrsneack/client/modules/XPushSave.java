@@ -83,8 +83,4 @@ public class XPushSave {
             return data;
         }
     }
-
-    public XPushData getData() {
-        return data;
-    }
 }
