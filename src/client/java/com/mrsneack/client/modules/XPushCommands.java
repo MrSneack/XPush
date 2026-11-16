@@ -39,7 +39,7 @@ public class XPushCommands {
                             .then(ClientCommandManager.argument("command", StringArgumentType.word())
                                     .suggests((context, builder) ->
                                             CommandSource.suggestMatching(
-                                                    List.of("Delay", "Enable", "Disable", "TimingJitter", "GUI"),
+                                                    List.of("Delay", "Enable", "Disable", "TimingJitter", "GUI", "Help"),
                                                     builder
                                             )
                                     )
@@ -66,7 +66,7 @@ public class XPushCommands {
 
                                         if (command.equalsIgnoreCase("Delay")) {
                                             context.getSource().sendFeedback(
-                                                    Text.literal("Usage: /xpush Delay <1-20>")
+                                                    Text.translatable("text.xpush.delay_warn")
                                                             .formatted(Formatting.YELLOW)
                                             );
                                             return 1;
@@ -74,7 +74,7 @@ public class XPushCommands {
 
                                         if (command.equalsIgnoreCase("TimingJitter")) {
                                             context.getSource().sendFeedback(
-                                                    Text.literal("Usage: /xpush TimingJitter <Enable|Disable>")
+                                                    Text.translatable("text.xpush.timingjitter_warn")
                                                             .formatted(Formatting.YELLOW)
                                             );
                                             return 1;
@@ -82,14 +82,14 @@ public class XPushCommands {
 
                                         if (command.equalsIgnoreCase("GUI")) {
                                             context.getSource().sendFeedback(
-                                                    Text.literal("Usage: /xpush GUI <Enable|Disable>")
+                                                    Text.translatable("text.xpush.gui_warn")
                                                             .formatted(Formatting.YELLOW)
                                             );
                                             return 1;
                                         }
 
                                         context.getSource().sendError(
-                                                Text.literal("Unknown command.")
+                                                Text.translatable("text.xpush.unknowncommand")
                                         );
                                         return 0;
                                     })
@@ -134,14 +134,14 @@ public class XPushCommands {
                                                         delay = Integer.parseInt(value);
                                                     } catch (NumberFormatException e) {
                                                         context.getSource().sendError(
-                                                                Text.literal("Delay must be a number from 1 to 20.")
+                                                                Text.translatable("text.xpush.delaynum_error")
                                                         );
                                                         return 0;
                                                     }
 
                                                     if (delay < 1 || delay > 20) {
                                                         context.getSource().sendError(
-                                                                Text.literal("Delay must be between 1 and 20.")
+                                                                Text.translatable("text.xpush.delayrange_error")
                                                         );
                                                         return 0;
                                                     }
@@ -164,7 +164,7 @@ public class XPushCommands {
                                                         && !value.equalsIgnoreCase("Disable")) {
 
                                                     context.getSource().sendError(
-                                                            Text.literal("Use Enable or Disable.")
+                                                            Text.translatable("text.xpush.argumenterror")
                                                     );
                                                     return 0;
                                                 }
@@ -200,7 +200,7 @@ public class XPushCommands {
                                                 }
 
                                                 context.getSource().sendError(
-                                                        Text.literal("This command does not accept an argument.")
+                                                        Text.translatable("text.xpush.unknownargument")
                                                 );
                                                 return 0;
                                             })

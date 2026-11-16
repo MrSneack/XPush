@@ -12,5 +12,13 @@
   "text.xpush.setDelay": "Delay set to ",
   "text.xpush.setEnabled": "XPush ",
   "text.xpush.setEnabledGUI": "XPush GUI ",
-  "text.xpush.setJitter": "Timing Jitter "
+  "text.xpush.setJitter": "Timing Jitter ",
+  "text.xpush.delay_warn": "Usage: /xpush Delay <1-20>",
+  "text.xpush.timingjitter_warn": "Usage: /xpush TimingJitter <Enable|Disable>",
+  "text.xpush.gui_warn": "Usage: /xpush GUI <Enable|Disable>",
+  "text.xpush.unknowncommand": "Unknown command. Use /xpush help",
+  "text.xpush.unknownargument": "This command does not accept an argument.",
+  "text.xpush.argument_error": "Use Enable or Disable.",
+  "text.xpush.delayrange_error": "Delay must be between 1 and 20.",
+  "text.xpush.delaynum_error": "Delay must be a number from 1 to 20."
 }
