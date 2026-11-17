@@ -28,10 +28,14 @@ public class XPushCommands {
                     ClientCommandManager.literal("xpush")
                             .executes(context -> {
                                 context.getSource().sendFeedback(
-                                        Text.translatable("text.xpush.defaultCommand")
+                                        Text.translatable("text.xpush.help_title")
                                                 .formatted(Formatting.AQUA)
-                                                .append(" Delay | Enable | Disable | TimingJitter | GUI")
-                                                .formatted(Formatting.DARK_AQUA)
+                                                .append("\n")
+                                                .append(Text.translatable("text.xpush.help_1").formatted(Formatting.DARK_AQUA).append("\n"))
+                                                .append(Text.translatable("text.xpush.help_2").formatted(Formatting.DARK_AQUA).append("\n"))
+                                                .append(Text.translatable("text.xpush.help_3").formatted(Formatting.DARK_AQUA).append("\n"))
+                                                .append(Text.translatable("text.xpush.help_4").formatted(Formatting.DARK_AQUA).append("\n"))
+                                                .append(Text.translatable("text.xpush.help_5").formatted(Formatting.DARK_AQUA))
                                 );
                                 return 1;
                             })
@@ -64,6 +68,20 @@ public class XPushCommands {
                                             return 1;
                                         }
 
+                                        if(command.equalsIgnoreCase("Help")) {
+                                            context.getSource().sendFeedback(
+                                                    Text.translatable("text.xpush.help_title")
+                                                            .formatted(Formatting.AQUA)
+                                                            .append("\n")
+                                                            .append(Text.translatable("text.xpush.help_1").formatted(Formatting.DARK_AQUA).append("\n"))
+                                                            .append(Text.translatable("text.xpush.help_2").formatted(Formatting.DARK_AQUA).append("\n"))
+                                                            .append(Text.translatable("text.xpush.help_3").formatted(Formatting.DARK_AQUA).append("\n"))
+                                                            .append(Text.translatable("text.xpush.help_4").formatted(Formatting.DARK_AQUA).append("\n"))
+                                                            .append(Text.translatable("text.xpush.help_5").formatted(Formatting.DARK_AQUA))
+                                            );
+                                            return 1;
+                                        }
+
                                         if (command.equalsIgnoreCase("Delay")) {
                                             context.getSource().sendFeedback(
                                                     Text.translatable("text.xpush.delay_warn")
@@ -74,7 +92,7 @@ public class XPushCommands {
 
                                         if (command.equalsIgnoreCase("TimingJitter")) {
                                             context.getSource().sendFeedback(
-                                                    Text.translatable("text.xpush.timingjitter_warn")
+                                                    Text.translatable("text.xpush.timing_jitter_warn")
                                                             .formatted(Formatting.YELLOW)
                                             );
                                             return 1;
@@ -89,7 +107,7 @@ public class XPushCommands {
                                         }
 
                                         context.getSource().sendError(
-                                                Text.translatable("text.xpush.unknowncommand")
+                                                Text.translatable("text.xpush.unknown_command")
                                         );
                                         return 0;
                                     })
@@ -134,14 +152,14 @@ public class XPushCommands {
                                                         delay = Integer.parseInt(value);
                                                     } catch (NumberFormatException e) {
                                                         context.getSource().sendError(
-                                                                Text.translatable("text.xpush.delaynum_error")
+                                                                Text.translatable("text.xpush.delay_num_error")
                                                         );
                                                         return 0;
                                                     }
 
                                                     if (delay < 1 || delay > 20) {
                                                         context.getSource().sendError(
-                                                                Text.translatable("text.xpush.delayrange_error")
+                                                                Text.translatable("text.xpush.delay_range_error")
                                                         );
                                                         return 0;
                                                     }
@@ -164,7 +182,7 @@ public class XPushCommands {
                                                         && !value.equalsIgnoreCase("Disable")) {
 
                                                     context.getSource().sendError(
-                                                            Text.translatable("text.xpush.argumenterror")
+                                                            Text.translatable("text.xpush.argument_error")
                                                     );
                                                     return 0;
                                                 }
@@ -200,7 +218,7 @@ public class XPushCommands {
                                                 }
 
                                                 context.getSource().sendError(
-                                                        Text.translatable("text.xpush.unknownargument")
+                                                        Text.translatable("text.xpush.unknown_argument")
                                                 );
                                                 return 0;
                                             })
