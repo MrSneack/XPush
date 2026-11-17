@@ -22,21 +22,23 @@ public class XPushCommands {
                 : Text.translatable("text.xpush.disabled").formatted(Formatting.RED);
     }
 
+    private static Text getInfo() {
+        return Text.translatable("text.xpush.help_title")
+                .formatted(Formatting.AQUA)
+                .append("\n")
+                .append(Text.translatable("text.xpush.help_1").formatted(Formatting.DARK_AQUA).append("\n"))
+                .append(Text.translatable("text.xpush.help_2").formatted(Formatting.DARK_AQUA).append("\n"))
+                .append(Text.translatable("text.xpush.help_3").formatted(Formatting.DARK_AQUA).append("\n"))
+                .append(Text.translatable("text.xpush.help_4").formatted(Formatting.DARK_AQUA).append("\n"))
+                .append(Text.translatable("text.xpush.help_5").formatted(Formatting.DARK_AQUA));
+    }
+
     public static void register() {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, commandRegistryAccess) -> {
             dispatcher.register(
                     ClientCommandManager.literal("xpush")
                             .executes(context -> {
-                                context.getSource().sendFeedback(
-                                        Text.translatable("text.xpush.help_title")
-                                                .formatted(Formatting.AQUA)
-                                                .append("\n")
-                                                .append(Text.translatable("text.xpush.help_1").formatted(Formatting.DARK_AQUA).append("\n"))
-                                                .append(Text.translatable("text.xpush.help_2").formatted(Formatting.DARK_AQUA).append("\n"))
-                                                .append(Text.translatable("text.xpush.help_3").formatted(Formatting.DARK_AQUA).append("\n"))
-                                                .append(Text.translatable("text.xpush.help_4").formatted(Formatting.DARK_AQUA).append("\n"))
-                                                .append(Text.translatable("text.xpush.help_5").formatted(Formatting.DARK_AQUA))
-                                );
+                                context.getSource().sendFeedback(getInfo());
                                 return 1;
                             })
 
@@ -69,16 +71,7 @@ public class XPushCommands {
                                         }
 
                                         if(command.equalsIgnoreCase("Help")) {
-                                            context.getSource().sendFeedback(
-                                                    Text.translatable("text.xpush.help_title")
-                                                            .formatted(Formatting.AQUA)
-                                                            .append("\n")
-                                                            .append(Text.translatable("text.xpush.help_1").formatted(Formatting.DARK_AQUA).append("\n"))
-                                                            .append(Text.translatable("text.xpush.help_2").formatted(Formatting.DARK_AQUA).append("\n"))
-                                                            .append(Text.translatable("text.xpush.help_3").formatted(Formatting.DARK_AQUA).append("\n"))
-                                                            .append(Text.translatable("text.xpush.help_4").formatted(Formatting.DARK_AQUA).append("\n"))
-                                                            .append(Text.translatable("text.xpush.help_5").formatted(Formatting.DARK_AQUA))
-                                            );
+                                            context.getSource().sendFeedback(getInfo());
                                             return 1;
                                         }
 
