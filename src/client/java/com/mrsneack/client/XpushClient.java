@@ -1,9 +1,6 @@
 package com.mrsneack.client;
 
-import com.mrsneack.client.modules.XPushCommands;
-import com.mrsneack.client.modules.XPushLogger;
-import com.mrsneack.client.modules.XPushSave;
-import com.mrsneack.client.modules.XPushScreen;
+import com.mrsneack.client.modules.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 
@@ -57,7 +54,6 @@ public class XpushClient implements ClientModInitializer {
                 GLFW.GLFW_KEY_G,
                 xpushCategory
         ));
-
         // Event calling every tick
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
 
@@ -126,7 +122,7 @@ public class XpushClient implements ClientModInitializer {
                         hand
                 );
                 // set timer
-                delayTimer = config.delay;
+                delayTimer = TimingJitter.apply(config.delay);
             }
 
         });
