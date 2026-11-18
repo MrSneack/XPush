@@ -1,8 +1,6 @@
 package com.mrsneack.client;
 
-import com.mrsneack.client.modules.XPushCommands;
-import com.mrsneack.client.modules.XPushSave;
-import com.mrsneack.client.modules.XPushScreen;
+import com.mrsneack.client.modules.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 
@@ -30,6 +28,7 @@ public class XpushClient implements ClientModInitializer {
 
     // set XPushData to variable for editing
     public static XPushSave.XPushData config = saveManager.load();
+    public XPushLogger LOGGER = new XPushLogger();
 
     @Override
     public void onInitializeClient() {
@@ -53,31 +52,30 @@ public class XpushClient implements ClientModInitializer {
                 GLFW.GLFW_KEY_G,
                 xpushCategory
         ));
-
         // Event calling every tick
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
+
+            // if client equal null and integrationManager equal null else return 0
+            if (client.player == null || client.interactionManager == null || client.world == null) {
+                return;
+            }
+
             // while if keybind pressed and GUIEnabled has true
-            while (openGUI.wasPressed() && config.enabledGUI) {
+            if (openGUI.wasPressed() && config.enabledGUI) {
                 // Open GUI if his closed
                 if (client.currentScreen instanceof XPushScreen) {
                     client.setScreen(null);
-                    System.out.println("[XPush] Closing GUI");
+                    LOGGER.INFO("[XPush] Closing GUI");
                 }
                 // Close GUI if his opened
                 else {
                     client.setScreen(new XPushScreen());
-                    System.out.println("[XPush] Opening GUI");
+                    LOGGER.INFO("[XPush] Opening GUI");
                 }
             }
 
-
-            // if client equal null and integrationManager equal null else return 0
-            if (client.player == null || client.interactionManager == null) {
-                return;
-            }
-
             // while if toggle Keybind pressed
-            while (toggleKeyBind.wasPressed()) {
+            if (toggleKeyBind.wasPressed()) {
                 config.enabled = !config.enabled;
                 // if XPush enabled with keybind send in chat message about enabling
                 if (config.enabled) {
@@ -91,15 +89,17 @@ public class XpushClient implements ClientModInitializer {
             }
 
             if (!config.enabled) {
+                delayTimer = 0;
                 return;
             }
 
             // if timer less 0 perform code
             if (delayTimer > 0) {
                 delayTimer--;
+            }
+            if(delayTimer > 0) {
                 return;
             }
-
             // assign an item in hand to a variable
             var stack = client.player.getMainHandStack();
             var off_stack = client.player.getOffHandStack();
@@ -120,7 +120,7 @@ public class XpushClient implements ClientModInitializer {
                         hand
                 );
                 // set timer
-                delayTimer = config.delay + 1;
+                delayTimer = TimingJitter.apply(config.delay);
             }
 
         });
