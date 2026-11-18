@@ -30,6 +30,11 @@
 - Minor corrections of errors and shortcomings
 - Minor file structure optimization
 
-# 1.3.0
+# 1.3.0 - Final Update
 
-- 
+- __Rewrote command system__
+- __Protection save system__
+- __Code optimization__
+- __Added a Timing Jitter__
+- __Rewrote Localization__
+- __Added a logger system__
